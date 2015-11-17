@@ -2,7 +2,7 @@
 - hosts: servers
   sudo: yes
   tasks:
-    - name: updates a server
+    - name: Update server
       apt: update_cache=yes
     - name: Installs nodejs
       apt: pkg=nodejs state=installed update_cache=true
@@ -12,9 +12,11 @@
       apt: pkg=git state=installed update_cache=true
     - name: Create symlink
       file: src=/usr/bin/nodejs dest=/usr/bin/node state=link
-    -name: Intall forever globally
-      npm: pkg=forever global=yes
-
-  handlers:
-    - name: start nginx
-      service: name=nginx state=started
+    - name: Intall forever globally
+      npm: name=forever global=yes state=latest
+    - name: Clone the application repo
+      git: repo=https://github.com/DevOps-HeadBangers/File-upload-in-Node.git dest=~/File-upload-in-Node accept_hostkey=yes
+    - name: Intall dependencies
+      npm: path=~/File-upload-in-Node
+    - name: Run server
+      command: forever start File-upload-in-Node/server.js  
