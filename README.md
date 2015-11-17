@@ -22,5 +22,7 @@
    ```
    The above command will consume the inventory file and use the rules in playbook.yml to provision the server.
 
+##### The ability to deploy software to the production environment triggered after build, testing, and analysis stage is completed. The deployment needs to occur on actual remote machine/VM (e.g. AWS, droplet, VCL), and not a local VM.
+
 
 
