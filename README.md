@@ -44,8 +44,9 @@
 
 #### The ability to perform a canary release: Using a proxy/load balancer server, route a percentage of traffic to a newly staged version of software and remaining traffic to a stable version of software. Stop routing traffic to canary if alert is raised.
 
-1. Run proxy server (from directory Milestone3):
+1. Run proxy server (from directory Milestone3) and Canary Server from the Project App directory (do provide port number) and make sure stable version is also working:
    ```
+   node server-canary.js 3001
    node proxy-server.js
    ```
 
