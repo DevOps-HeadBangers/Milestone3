@@ -30,7 +30,7 @@
 ```
 localhost:4005
 ```
-2. Try uploading a new file and see this metric changing.
+2. Try uploading a new file at localhost 3000 and see this metric changing.
 
 3. For SMS based alerts you are required to setup a [Twilio account](https://www.twilio.com/). Upon regiestration get a Twilio phone number. After getting the phone number click on **Show API Credentials**. Make note of ACCOUNT SID and AUTH TOKEN.
 
