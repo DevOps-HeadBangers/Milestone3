@@ -27,9 +27,9 @@
 #### The ability to monitor the deployed application (using at least 2 metrics) and send alerts using email or SMS (e.g., smtp, mandrill, twilio). An alert can be sent based on some predefined rule.
 
 1. The application has 2 monitoring criterias (using socket.io): ```Number of Uploads``` and ```Highest Upload Size```, to see this metric (it updates automatialy) go to:
-```
-localhost:4005
-```
+   ```
+   localhost:4005
+   ```
 
 2. Try uploading a new file at localhost 3000 and see this metric changing.
 
@@ -45,15 +45,15 @@ localhost:4005
 #### The ability to perform a canary release: Using a proxy/load balancer server, route a percentage of traffic to a newly staged version of software and remaining traffic to a stable version of software. Stop routing traffic to canary if alert is raised.
 
 1. Run proxy server (from directory Milestone3):
-```
-node proxy-server.js
-```
+   ```
+   node proxy-server.js
+   ```
 
 2. Open to proxy server in multiple tabs (6-7):
-```
-localhost:5050
-```
-Notice console redirection messages, some of them will go to CANARY and some to STABLE. Also, notice that traffic with numbers 4 & 5 goes to canary and number 1-3 goes to stable this is illustration purpose only. 60% traffic is for STABLE and 40% is for CANARY.
+   ```
+   localhost:5050
+   ```
+   Notice console redirection messages, some of them will go to CANARY and some to STABLE. Also, notice that traffic with numbers 4 & 5 goes to canary and number 1-3 goes to stable this is illustration purpose only. 60% traffic is for STABLE and 40% is for CANARY.
 
 3. Now go to any one of the open ```localhost:5050``` and upload file many file images more totaling more than 8 MB. You will receive the SMS alert as mentioned in above property from CANARY, also the CONSOLE will say **Canary Server Failed** However, if you open a 6-7 more proxy servers in new tab (localhost:5050), you will notice that all the traffic is now directed to STABLE server irrespective of number 1-5.
 
