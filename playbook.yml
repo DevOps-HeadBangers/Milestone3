@@ -2,21 +2,11 @@
 - hosts: servers
   sudo: yes
   tasks:
-    - name: Update server
-      apt: update_cache=yes
-    - name: Installs nodejs
-      apt: pkg=nodejs state=installed update_cache=true
-    - name: Installs npm
-      apt: pkg=npm state=installed update_cache=true      
-    - name: Installs git
-      apt: pkg=git state=installed update_cache=true
-    - name: Create symlink
-      file: src=/usr/bin/nodejs dest=/usr/bin/node state=link
-    - name: Intall forever globally
-      npm: name=forever global=yes state=latest
-    - name: Clone the application repo
-      git: repo=https://github.com/DevOps-HeadBangers/File-upload-in-Node.git dest=~/File-upload-in-Node accept_hostkey=yes
-    - name: Intall dependencies
-      npm: path=~/File-upload-in-Node
     - name: Run server
-      command: forever start File-upload-in-Node/server.js  
+      command: forever start File-upload-in-Node/server.js
+    - name: Source bashrc
+      shell: . ~/.bashrc
+    - lineinfile: dest=.bashrc line="export TWILIO_SID='{{ lookup('env','TWILIO_SID') }}'"
+    - lineinfile: dest=.bashrc line="export TWILIO_TOKEN='{{ lookup('env','TWILIO_TOKEN') }}'"
+    - lineinfile: dest=.bashrc line="export MY_TWILIO_NO='{{ lookup('env','MY_TWILIO_NO') }}'"
+    - lineinfile: dest=.bashrc line="export MY_PHONE_NO='{{ lookup('env','MY_PHONE_NO') }}'"    
