@@ -12,6 +12,12 @@ We are using the following node js project as our target project:
 https://github.com/DevOps-HeadBangers/Milestone3TargetApp.git
 ```
 
+We have 3 droplets for this milestone:
+
+Droplet 1: It runs Jenkins build server, redis global server, and the proxy server.
+Droplet 2: It is the stable production server.
+Droplet 3: It is the canary server.
+
 ### Properties
 
 #### The ability to configure a production environment *automatically*, using a configuration management tool, such as ansible, or configured using docker.
@@ -37,6 +43,16 @@ https://github.com/DevOps-HeadBangers/Milestone3TargetApp.git
    ![Capability 1](https://github.com/DevOps-HeadBangers/Milestone3/blob/master/images/cap1.gif) 
 
 #### The ability to deploy software to the production environment triggered after build, testing, and analysis stage is completed. The deployment needs to occur on actual remote machine/VM (e.g. AWS, droplet, VCL), and not a local VM.
+
+For this task, we have setup a new Droplet which will run the Jenkins build server and the redis global. This droplet will also run the proxy server got the task 5.
+
+Public ssh key of this droplet is added to the ```authorized_keys``` of the Stable Server so that Jenkins can ssh into it to deploy the latest code.
+
+We have used Jenkins Github Service to add a webhook to the repo so that whenever a push is made to the app repo, the code will be built, tested, analysed and deployed to the production server.
+
+Build, test and analysis is done similar to Milestone 2. The logic to deploy is in the ```deploy.sh``` script which is executed as a part of the Execute Script part of Jenkins build.
+
+![Capability 2](https://github.com/DevOps-HeadBangers/Milestone3/blob/master/images/cap2.gif) 
 
 #### The ability to use feature flags, serviced by a global redis store, to toggle functionality of a deployed feature in production.
 1. Our application send email to a registered email id by default whenever there is a new image upload. However, this feature can be turned ON and OFF based on Key-value (Key is M3_EMAIL) stored in global Redis Store.
