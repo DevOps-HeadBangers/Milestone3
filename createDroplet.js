@@ -26,7 +26,7 @@ var droplet =
 		{
 			"name": dropletName,
 			"region":region,
-			"size":"512mb",
+			"size":"1gb",
 			"image":imageName,
 			"ssh_keys":[parseInt(process.env.DIGITAL_OCEAN_SSH_ID, 10)],
 			"backups":false,
