@@ -34,7 +34,7 @@ https://github.com/DevOps-HeadBangers/Milestone3TargetApp.git
    ```
    The above command will consume the inventory file and use the rules in playbook.yml to automatically provision the server.
    
-   ![Capability 1](https://github.com/DevOps-HeadBangers/Milestone2/blob/master/images/cap1.gif) 
+   ![Capability 1](https://github.com/DevOps-HeadBangers/Milestone3/blob/master/images/cap1.gif) 
 
 #### The ability to deploy software to the production environment triggered after build, testing, and analysis stage is completed. The deployment needs to occur on actual remote machine/VM (e.g. AWS, droplet, VCL), and not a local VM.
 
