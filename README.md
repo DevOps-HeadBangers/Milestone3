@@ -15,7 +15,9 @@ https://github.com/DevOps-HeadBangers/Milestone3TargetApp.git
 We have 3 droplets for this milestone:
 
 Droplet 1: It runs Jenkins build server, redis global server, and the proxy server.
+
 Droplet 2: It is the stable production server.
+
 Droplet 3: It is the canary server.
 
 ### Properties
@@ -89,7 +91,7 @@ redis-cli
 
 ![Capability 4](https://github.com/DevOps-HeadBangers/Milestone3/blob/master/images/cap4.gif) 
 
-![Capability 4 Alert](https://github.com/DevOps-HeadBangers/Milestone3/blob/master/images/cap4_alert.gif) 
+![Capability 4 Alert](https://github.com/DevOps-HeadBangers/Milestone3/blob/master/images/cap4_alert.PNG) 
 
 #### The ability to perform a canary release: Using a proxy/load balancer server, route a percentage of traffic to a newly staged version of software and remaining traffic to a stable version of software. Stop routing traffic to canary if alert is raised.
 
