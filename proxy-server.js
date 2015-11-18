@@ -15,7 +15,7 @@ var i = 0;
 var ipStable = process.argv[2];
 var ipCanary = process.argv[3];
 
-var socket = sioc('http://' + interfaces.eth0[0].address + ':4006');
+var socket = sioc('http://' + ipCanary + ':4006');
 
 // var socket = sioc('http://localhost:4006');
 
