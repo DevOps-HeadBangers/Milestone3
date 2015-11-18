@@ -1,5 +1,25 @@
 # Milestone: DEPLOYMENT
 
+### Team Members
+1. Kumar Utsav (kutsav)
+2. Raman Preet Singh (rpsingh2)
+3. Rohit Arora (rarora4)
+
+### Description
+
+We are using the following node js project as our target project: 
+```
+https://github.com/DevOps-HeadBangers/Milestone3TargetApp.git
+```
+
+We have 3 droplets for this milestone:
+
+Droplet 1: It runs Jenkins build server, redis global server, and the proxy server.
+
+Droplet 2: It is the stable production server.
+
+Droplet 3: It is the canary server.
+
 ### Properties
 
 #### The ability to configure a production environment *automatically*, using a configuration management tool, such as ansible, or configured using docker.
@@ -20,9 +40,21 @@
    ```
    ansible-playbook -i inventory playbook.yml
    ```
-   The above command will consume the inventory file and use the rules in playbook.yml to provision the server.
+   The above command will consume the inventory file and use the rules in playbook.yml to automatically provision the server.
+   
+   ![Capability 1](https://github.com/DevOps-HeadBangers/Milestone3/blob/master/images/cap1.gif) 
 
 #### The ability to deploy software to the production environment triggered after build, testing, and analysis stage is completed. The deployment needs to occur on actual remote machine/VM (e.g. AWS, droplet, VCL), and not a local VM.
+
+For this task, we have setup a new Droplet which will run the Jenkins build server and the redis global. This droplet will also run the proxy server got the task 5.
+
+Public ssh key of this droplet is added to the ```authorized_keys``` of the Stable Server so that Jenkins can ssh into it to deploy the latest code.
+
+We have used Jenkins Github Service to add a webhook to the repo so that whenever a push is made to the app repo, the code will be built, tested, analysed and deployed to the production server.
+
+Build, test and analysis is done similar to Milestone 2. The logic to deploy is in the ```deploy.sh``` script which is executed as a part of the Execute Script part of Jenkins build.
+
+![Capability 2](https://github.com/DevOps-HeadBangers/Milestone3/blob/master/images/cap2.gif) 
 
 #### The ability to use feature flags, serviced by a global redis store, to toggle functionality of a deployed feature in production.
 1. Our application send email to a registered email id by default whenever there is a new image upload. However, this feature can be turned ON and OFF based on Key-value (Key is M3_EMAIL) stored in global Redis Store.
@@ -38,15 +70,16 @@ redis-cli
 redis-cli
 >>> SET M3_EMAIL Yes
 ```
+![Capability 3](https://github.com/DevOps-HeadBangers/Milestone3/blob/master/images/cap3.gif) 
 
 #### The ability to monitor the deployed application (using at least 2 metrics) and send alerts using email or SMS (e.g., smtp, mandrill, twilio). An alert can be sent based on some predefined rule.
 
 1. The application has 2 monitoring criterias (using socket.io): ```Number of Uploads``` and ```Highest Upload Size```, to see this metric (it updates automatialy) go to:
    ```
-   localhost:3000/monitor
+   <stable_server_ip>:3000/monitor
    ```
 
-2. Try uploading a new file at localhost 3000 and see this metric changing.
+2. Try uploading a new file at <stable_server_ip>: 3000 and see this metric changing.
 
 3. For SMS based alerts you are required to setup a [Twilio account](https://www.twilio.com/). Upon regiestration get a Twilio phone number. After getting the phone number click on **Show API Credentials**. Make note of ACCOUNT SID and AUTH TOKEN.
 
@@ -56,6 +89,9 @@ redis-cli
 	* We are assuming the max storage capacity of our application (for alert purpose) is 10MB, if storage reaches 80% of this capacity SMS alert is sent to the receiver(MY_PHONE_NO).
 	* Another instance when SMS alerts are sent is when there are uploads greater 1MB under a minutes timeframe.  
 
+![Capability 4](https://github.com/DevOps-HeadBangers/Milestone3/blob/master/images/cap4.gif) 
+
+![Capability 4 Alert](https://github.com/DevOps-HeadBangers/Milestone3/blob/master/images/cap4_alert.PNG) 
 
 #### The ability to perform a canary release: Using a proxy/load balancer server, route a percentage of traffic to a newly staged version of software and remaining traffic to a stable version of software. Stop routing traffic to canary if alert is raised.
 
