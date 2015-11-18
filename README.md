@@ -24,6 +24,21 @@
 
 #### The ability to deploy software to the production environment triggered after build, testing, and analysis stage is completed. The deployment needs to occur on actual remote machine/VM (e.g. AWS, droplet, VCL), and not a local VM.
 
+#### The ability to use feature flags, serviced by a global redis store, to toggle functionality of a deployed feature in production.
+1. Our application send email to a registered email id by default whenever there is a new image upload. However, this feature can be turned ON and OFF based on Key-value (Key is M3_EMAIL) stored in global Redis Store.
+
+2. To toggle this functionality OFF, go to console (assuming you have Redis installed) and type the following:
+```
+redis-cli
+>>> SET M3_EMAIL No
+```
+
+3. Similarly, to turn this feature off, go to console (assuming you have Redis installed) and type the following:
+```
+redis-cli
+>>> SET M3_EMAIL Yes
+```
+
 #### The ability to monitor the deployed application (using at least 2 metrics) and send alerts using email or SMS (e.g., smtp, mandrill, twilio). An alert can be sent based on some predefined rule.
 
 1. The application has 2 monitoring criterias (using socket.io): ```Number of Uploads``` and ```Highest Upload Size```, to see this metric (it updates automatialy) go to:
