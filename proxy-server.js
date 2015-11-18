@@ -27,9 +27,9 @@ socket.on("heartbeat", function(client)
 var server = http.createServer(function(req, res) {
 
 		var port = 3000;
-		var percent = Math.floor((Math.random() * 5) + 1);
+		var percent = Math.floor((Math.random() * 10) + 1);
 		console.log("Number: " + percent);
-		if((percent > 3) && (!canary_fail)){
+		if((percent > 7) && (!canary_fail)){
 			port = 3001;
 			console.log("Forwarding request to [CANARY - localhost:" + port+ "].");
 		}
