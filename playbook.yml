@@ -12,16 +12,26 @@
       apt: pkg=git state=installed update_cache=true
     - name: Create symlink
       file: src=/usr/bin/nodejs dest=/usr/bin/node state=link
+    - name: Add the Redis PPA
+      apt_repository: repo='ppa:rwky/redis' update_cache=yes
+    - name: Install Redis from PPA
+      apt: pkg=redis-server state=installed
+    - name: Start Redis
+      service: name=redis-server state=started
     - name: Intall forever globally
       npm: name=forever global=yes state=latest
     - name: Clone the application repo
       git: repo=https://github.com/DevOps-HeadBangers/Milestone3TargetApp.git dest=~/Milestone3TargetApp accept_hostkey=yes
     - name: Intall dependencies
       npm: path=~/Milestone3TargetApp
-    - lineinfile: dest=.bashrc line="export TWILIO_SID='{{ lookup('env','TWILIO_SID') }}'"
-    - lineinfile: dest=.bashrc line="export TWILIO_TOKEN='{{ lookup('env','TWILIO_TOKEN') }}'"
-    - lineinfile: dest=.bashrc line="export MY_TWILIO_NO='{{ lookup('env','MY_TWILIO_NO') }}'"
-    - lineinfile: dest=.bashrc line="export MY_PHONE_NO='{{ lookup('env','MY_PHONE_NO') }}'"    
+    - name: Export TWILIO_SID
+      lineinfile: dest=.bashrc line="export TWILIO_SID='{{ lookup('env','TWILIO_SID') }}'"
+    - name: Export TWILIO_TOKEN
+      lineinfile: dest=.bashrc line="export TWILIO_TOKEN='{{ lookup('env','TWILIO_TOKEN') }}'"
+    - name: Export MY_TWILIO_NO
+      lineinfile: dest=.bashrc line="export MY_TWILIO_NO='{{ lookup('env','MY_TWILIO_NO') }}'"
+    - name: Export MY_PHONE_NO
+      lineinfile: dest=.bashrc line="export MY_PHONE_NO='{{ lookup('env','MY_PHONE_NO') }}'"    
     - name: Source bashrc
       shell: . ~/.bashrc
     - name: Run server
