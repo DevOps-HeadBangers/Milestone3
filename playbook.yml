@@ -39,7 +39,7 @@
     - name: Source bashrc
       shell: . ~/.bashrc
     - name: Run server
-      command: forever start Milestone3TargetApp/server.js
+      command: forever start Milestone3TargetApp/server.js 104.131.193.51
       environment:
         TWILIO_SID: "{{ lookup('env','TWILIO_SID') }}"
         TWILIO_TOKEN: "{{ lookup('env','TWILIO_TOKEN') }}"
