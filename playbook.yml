@@ -18,13 +18,16 @@
       git: repo=https://github.com/DevOps-HeadBangers/Milestone3TargetApp.git dest=~/Milestone3TargetApp accept_hostkey=yes
     - name: Intall dependencies
       npm: path=~/Milestone3TargetApp
-    - name: Run server
-      command: forever start Milestone3TargetApp/server.js  
-    - name: Run server
-      command: forever start Milestone3TargetApp/server.js
-    - name: Source bashrc
-      shell: . ~/.bashrc
     - lineinfile: dest=.bashrc line="export TWILIO_SID='{{ lookup('env','TWILIO_SID') }}'"
     - lineinfile: dest=.bashrc line="export TWILIO_TOKEN='{{ lookup('env','TWILIO_TOKEN') }}'"
     - lineinfile: dest=.bashrc line="export MY_TWILIO_NO='{{ lookup('env','MY_TWILIO_NO') }}'"
     - lineinfile: dest=.bashrc line="export MY_PHONE_NO='{{ lookup('env','MY_PHONE_NO') }}'"    
+    - name: Source bashrc
+      shell: . ~/.bashrc
+    - name: Run server
+      command: forever start Milestone3TargetApp/server.js
+      environment:
+        TWILIO_SID: "{{ lookup('env','TWILIO_SID') }}"
+        TWILIO_TOKEN: "{{ lookup('env','TWILIO_TOKEN') }}"
+        MY_TWILIO_NO: "{{ lookup('env','MY_TWILIO_NO') }}"
+        MY_PHONE_NO: "{{ lookup('env','MY_PHONE_NO') }}"
