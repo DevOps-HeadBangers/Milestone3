@@ -1,5 +1,17 @@
 # Milestone: DEPLOYMENT
 
+### Team Members
+1. Kumar Utsav (kutsav)
+2. Raman Preet Singh (rpsingh2)
+3. Rohit Arora (rarora4)
+
+### Description
+
+We are using the following node js project as our target project: 
+```
+https://github.com/DevOps-HeadBangers/Milestone3TargetApp.git
+```
+
 ### Properties
 
 #### The ability to configure a production environment *automatically*, using a configuration management tool, such as ansible, or configured using docker.
@@ -20,7 +32,9 @@
    ```
    ansible-playbook -i inventory playbook.yml
    ```
-   The above command will consume the inventory file and use the rules in playbook.yml to provision the server.
+   The above command will consume the inventory file and use the rules in playbook.yml to automatically provision the server.
+   
+   ![Capability 1](https://github.com/DevOps-HeadBangers/Milestone2/blob/master/GIFs/cap1.gif) 
 
 #### The ability to deploy software to the production environment triggered after build, testing, and analysis stage is completed. The deployment needs to occur on actual remote machine/VM (e.g. AWS, droplet, VCL), and not a local VM.
 
