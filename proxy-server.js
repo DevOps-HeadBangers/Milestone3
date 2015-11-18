@@ -17,9 +17,9 @@ var ipCanary = process.argv[3];
 
 console.log(process.argv)
 
-// var socket = sioc('http://' + interfaces.eth0[0].address + ':4006');
+var socket = sioc('http://' + interfaces.eth0[0].address + ':4006');
 
-var socket = sioc('http://localhost:4006');
+// var socket = sioc('http://localhost:4006');
 
 socket.on("heartbeat", function(client) {
     canary_fail = client.status;
