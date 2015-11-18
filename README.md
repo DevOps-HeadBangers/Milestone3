@@ -95,20 +95,22 @@ redis-cli
 
 #### The ability to perform a canary release: Using a proxy/load balancer server, route a percentage of traffic to a newly staged version of software and remaining traffic to a stable version of software. Stop routing traffic to canary if alert is raised.
 
-1. Run proxy server (from directory Milestone3) and Canary Server from the Project App directory (do provide port number) and make sure stable version is also working:
+1. Run the following commands on the respective droplets to start the proxy server, stable server and the canary server:
    ```
-   node server.js
-   node server-canary.js
-   node proxy-server.js
+   Droplet 1: node proxy-server.js <stable server droplet ip> <canary server droplet ip>
+   Droplet 2: node server.js
+   Droplet 3: node proxy-canary.js
    ```
 
 2. Open to proxy server in multiple tabs (6-7):
    ```
-   localhost:5050
+   <proxy server ip>:5050
    ```
    Notice console redirection messages, some of them will go to CANARY and some to STABLE. Also, notice that traffic with numbers 8,9,10 goes to canary and number 1-7 goes to stable this is illustration purpose only. 70% traffic is for STABLE and 30% is for CANARY. CANARY or STABLE server are chosen randomly with 30-70 ratio.
 
-3. Now go to any one of the open ```localhost:5050``` and upload many file images more totaling more than 8 MB. You will receive the SMS alert as mentioned in above property from CANARY, also the CONSOLE will say **Canary Server Failed** However, if you open a 6-7 more proxy servers in new tab (localhost:5050), you will notice that all the traffic is now directed to STABLE server irrespective of number 1-5.
+3. Now go to any one of the open ```<proxy server ip>:5050``` and upload many file images more totaling more than 8 MB. You will receive the SMS alert as mentioned in above property from CANARY, also the CONSOLE will say **Canary Server Failed** However, if you open a 6-7 more proxy servers in new tab (localhost:5050), you will notice that all the traffic is now directed to STABLE server irrespective of number 1-5.
+
+![Capability 5](https://github.com/DevOps-HeadBangers/Milestone3/blob/master/images/cap5.gif) 
 
 
 
