@@ -2,7 +2,9 @@ http = require('http');
 httpProxy = require('http-proxy');
 var express = require('express');
 var sioc = require('socket.io-client');
+var os = require('os');
 
+var interfaces = os.networkInterfaces();
 
 var proxy = httpProxy.createProxyServer({});
 
@@ -11,7 +13,7 @@ var canary_fail = false;
 var i = 0;
 
 
-var socket = sioc('http://localhost:4006');
+var socket = sioc('http://' + interfaces.eth0[0].address + ':4006');
 
 socket.on("heartbeat", function(client) 
 {
