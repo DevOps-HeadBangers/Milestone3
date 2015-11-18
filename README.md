@@ -28,7 +28,7 @@
 
 1. The application has 2 monitoring criterias (using socket.io): ```Number of Uploads``` and ```Highest Upload Size```, to see this metric (it updates automatialy) go to:
    ```
-   localhost:4005
+   localhost:3000/monitor
    ```
 
 2. Try uploading a new file at localhost 3000 and see this metric changing.
