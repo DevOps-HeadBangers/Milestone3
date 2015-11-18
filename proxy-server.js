@@ -12,36 +12,44 @@ var canary_fail = false;
 
 var i = 0;
 
+var ipStable = process.argv[2];
+var ipCanary = process.argv[3];
 
-var socket = sioc('http://' + interfaces.eth0[0].address + ':4006');
+console.log(process.argv)
 
-socket.on("heartbeat", function(client) 
-{
-	canary_fail = client.status;
-	if((canary_fail == true) && (i == 0)){
-		i++;
-		console.log("Canary Server Failed.");
-	}
+// var socket = sioc('http://' + interfaces.eth0[0].address + ':4006');
+
+var socket = sioc('http://localhost:4006');
+
+socket.on("heartbeat", function(client) {
+    canary_fail = client.status;
+    if ((canary_fail == true) && (i == 0)) {
+        i++;
+        console.log("Canary Server Failed.");
+    }
 });
-
-
 
 var server = http.createServer(function(req, res) {
 
-		var port = 3000;
-		var percent = Math.floor((Math.random() * 10) + 1);
-		console.log("Number: " + percent);
-		if((percent > 7) && (!canary_fail)){
-			port = 3001;
-			console.log("Forwarding request to [CANARY - localhost:" + port+ "].");
-		}
-		else{
-			port = 3000;
-			console.log("Forwarding request to [STABLE - localhost:" + port+ "].");
-		}
-		proxy.web(req, res, { target: "http://localhost:" + port});
+    var port = 3000;
+    var percent = Math.floor((Math.random() * 10) + 1);
+    console.log("Number: " + percent);
+
+    if ((percent > 7) && (!canary_fail)) {
+        port = 3001;
+        console.log("Forwarding request to [CANARY - " + ipCanary + ":" + port + "].");
+        proxy.web(req, res, {
+            target: "http://" + ipCanary + ":" + port
+        });
+    } else {
+        port = 3000;
+        console.log("Forwarding request to [STABLE - " + ipStable + ":" + port + "].");
+        proxy.web(req, res, {
+            target: "http://" + ipStable + ":" + port
+        });
+    }
+
 });
- 
+
 console.log("listening on port 5050")
 server.listen(5050);
-
