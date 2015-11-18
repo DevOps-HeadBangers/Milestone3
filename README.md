@@ -11,6 +11,7 @@ We are using the following node js project as our target project:
 ```
 https://github.com/DevOps-HeadBangers/Milestone3TargetApp.git
 ```
+The ```source code``` of the servers can be found in the above repo.
 
 We have 3 droplets for this milestone:
 
