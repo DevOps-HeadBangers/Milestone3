@@ -32,6 +32,10 @@
       lineinfile: dest=.bashrc line="export MY_TWILIO_NO='{{ lookup('env','MY_TWILIO_NO') }}'"
     - name: Export MY_PHONE_NO
       lineinfile: dest=.bashrc line="export MY_PHONE_NO='{{ lookup('env','MY_PHONE_NO') }}'"    
+    - name: Export M3_GMAIL
+      lineinfile: dest=.bashrc line="export M3_GMAIL='{{ lookup('env','M3_GMAIL') }}'"    
+    - name: Export M3_PASS
+      lineinfile: dest=.bashrc line="export M3_PASS='{{ lookup('env','M3_PASS') }}'"          
     - name: Source bashrc
       shell: . ~/.bashrc
     - name: Run server
@@ -41,3 +45,5 @@
         TWILIO_TOKEN: "{{ lookup('env','TWILIO_TOKEN') }}"
         MY_TWILIO_NO: "{{ lookup('env','MY_TWILIO_NO') }}"
         MY_PHONE_NO: "{{ lookup('env','MY_PHONE_NO') }}"
+        M3_GMAIL: "{{ lookup('env','M3_GMAIL') }}"
+        M3_PASS: "{{ lookup('env','M3_PASS') }}"
