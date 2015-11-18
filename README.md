@@ -68,15 +68,16 @@ redis-cli
 redis-cli
 >>> SET M3_EMAIL Yes
 ```
+![Capability 3](https://github.com/DevOps-HeadBangers/Milestone3/blob/master/images/cap3.gif) 
 
 #### The ability to monitor the deployed application (using at least 2 metrics) and send alerts using email or SMS (e.g., smtp, mandrill, twilio). An alert can be sent based on some predefined rule.
 
 1. The application has 2 monitoring criterias (using socket.io): ```Number of Uploads``` and ```Highest Upload Size```, to see this metric (it updates automatialy) go to:
    ```
-   localhost:3000/monitor
+   <stable_server_ip>:3000/monitor
    ```
 
-2. Try uploading a new file at localhost 3000 and see this metric changing.
+2. Try uploading a new file at <stable_server_ip>: 3000 and see this metric changing.
 
 3. For SMS based alerts you are required to setup a [Twilio account](https://www.twilio.com/). Upon regiestration get a Twilio phone number. After getting the phone number click on **Show API Credentials**. Make note of ACCOUNT SID and AUTH TOKEN.
 
@@ -86,6 +87,9 @@ redis-cli
 	* We are assuming the max storage capacity of our application (for alert purpose) is 10MB, if storage reaches 80% of this capacity SMS alert is sent to the receiver(MY_PHONE_NO).
 	* Another instance when SMS alerts are sent is when there are uploads greater 1MB under a minutes timeframe.  
 
+![Capability 4](https://github.com/DevOps-HeadBangers/Milestone3/blob/master/images/cap4.gif) 
+
+![Capability 4 Alert](https://github.com/DevOps-HeadBangers/Milestone3/blob/master/images/cap4_alert.gif) 
 
 #### The ability to perform a canary release: Using a proxy/load balancer server, route a percentage of traffic to a newly staged version of software and remaining traffic to a stable version of software. Stop routing traffic to canary if alert is raised.
 
