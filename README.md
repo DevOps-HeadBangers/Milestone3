@@ -70,7 +70,7 @@ redis-cli
    ```
    localhost:5050
    ```
-   Notice console redirection messages, some of them will go to CANARY and some to STABLE. Also, notice that traffic with numbers 4 & 5 goes to canary and number 1-3 goes to stable this is illustration purpose only. 60% traffic is for STABLE and 40% is for CANARY.
+   Notice console redirection messages, some of them will go to CANARY and some to STABLE. Also, notice that traffic with numbers 4 & 5 goes to canary and number 1-3 goes to stable this is illustration purpose only. 70% traffic is for STABLE and 30% is for CANARY.
 
 3. Now go to any one of the open ```localhost:5050``` and upload many file images more totaling more than 8 MB. You will receive the SMS alert as mentioned in above property from CANARY, also the CONSOLE will say **Canary Server Failed** However, if you open a 6-7 more proxy servers in new tab (localhost:5050), you will notice that all the traffic is now directed to STABLE server irrespective of number 1-5.
 
