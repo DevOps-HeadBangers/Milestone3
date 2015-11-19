@@ -21,6 +21,10 @@ Droplet 2: It is the stable production server.
 
 Droplet 3: It is the canary server.
 
+Used the following article for reference:
+
+http://code.tutsplus.com/tutorials/setting-up-continuous-integration-continuous-deployment-with-jenkins--cms-21511
+
 ### Properties
 
 #### The ability to configure a production environment *automatically*, using a configuration management tool, such as ansible, or configured using docker.
