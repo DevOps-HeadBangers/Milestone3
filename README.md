@@ -58,15 +58,18 @@ Build, test and analysis is done similar to Milestone 2. The logic to deploy is 
 ![Capability 2](https://github.com/DevOps-HeadBangers/Milestone3/blob/master/images/cap2.gif) 
 
 #### The ability to use feature flags, serviced by a global redis store, to toggle functionality of a deployed feature in production.
-1. Our application send email to a registered email id by default whenever there is a new image upload. However, this feature can be turned ON and OFF based on Key-value (Key is M3_EMAIL) stored in global Redis Store.
 
-2. To toggle this functionality OFF, go to console (assuming you have Redis installed) and type the following:
+Since, Droplet 1 is serving as our build server as well as proxy server and also redis server is also running on it, we keep the server live always and the ip address of that server is provided via ansible so that the other servers can connect to it.
+
+Our application sends email to a registered email id by default whenever there is a new image upload. However, this feature can be turned ON and OFF based on Key-value (Key is M3_EMAIL) stored in global Redis Store.
+
+To toggle this functionality OFF, go to console (assuming you have Redis installed) and type the following:
 ```
 redis-cli
 >>> SET M3_EMAIL No
 ```
 
-3. Similarly, to turn this feature off, go to console (assuming you have Redis installed) and type the following:
+Similarly, to turn this feature off, go to console (assuming you have Redis installed) and type the following:
 ```
 redis-cli
 >>> SET M3_EMAIL Yes
